@@ -23,7 +23,7 @@ export default function NavigatePage({ pageName }) {
             case "home":
             case "/":
                 return "/";
-                //  TODO    add modular page exist check
+            //  TODO    add modular page exist check
             case "test":
                 return "test";
             default:
@@ -42,33 +42,33 @@ export default function NavigatePage({ pageName }) {
         //  TODO generate key for each page, use something random and unique to each user?
         <Link href={hrefPath()}>
             <button>
-                
+
                 {pageName == "" ? "/" : pageName}
-                </button>
+            </button>
         </Link>
     );
 }
 
 //  TODO  set current page state
-    //  after creation of page, increase by 1
-    //  maybe add a page limit for future development?
-export function currentPages(){
+//  after creation of page, increase by 1
+//  maybe add a page limit for future development?
+export function currentPages() {
     const [currentPagesState, setCurrentPages] = 0;
 }
 
 //  TODO creates page and appends to list of currentPages
-export function createPage(){
+export function createPage() {
 
 }
 
 //  TODO saves created page
-    //  saves info to database via some server?
-    //  maybe have a preview?
-export function savePage(){
+//  saves info to database via some server?
+//  maybe have a preview?
+export function savePage() {
 
 }
 
 //  opens up page to be edited by user
-export function editPage(){
+export function editPage() {
 
 }

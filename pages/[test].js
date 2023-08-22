@@ -19,7 +19,7 @@ export default function ModularPage({pageName}){
             <p>
                 pageName details = [{pageName}]
             </p>
-            test navigation
+            test modularPage
             <br></br>
             asPath [{asPath}] pathname {pathname}
             <br></br>
