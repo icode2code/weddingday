@@ -5,65 +5,95 @@ import { useState } from "react";
 var temp_codes = [];
 var current_token = null;
 
-function RSVPForm() {
-    const [RSVPAnswer, setRSVPAnswer] = useState('');
+function RsvpForm() {
+    const [RsvpAnswer, setRsvpAnswer] = useState('');
     const [error, setError] = useState(null);
-    const [rsvpStatus, setRSVPStatus] = useState(null);
+    const [RsvpStatus, setRsvpStatus] = useState('typing');
 
-    if (rsvpStatus === 'success') {
-        return <h1>rsvp success</h1>
+    if (RsvpStatus === 'success') {
+        return <h1>Rsvp success</h1>
     }
 
     async function handleSubmit(e) {
         e.preventDefault();
-        setRSVPStatus('submitting');
+        setRsvpStatus('submitting');
+        console.log(`status submitting`);
         try {
             //  TODO last worked here
-            await submit
+            await submitForm(RsvpAnswer);
+            setRsvpStatus('success');
+            console.log('success status');
+        } catch (err) {
+            setRsvpStatus('typing');
+            setError(err);
+            console.log(`error ${err}`);
         }
+    }
+
+    function handleTextareaChange(e) {
+        setRsvpAnswer(e.target.value);
     }
 
     return (
         <>
-            <h2>Search RSVP</h2>
+            <h2>Search Rsvp</h2>
             <p>
-                Please enter your RSVP code below
+                Please enter your Rsvp code below
             </p>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <textarea
-                    value={rsvpAnswer}
+                    value={RsvpAnswer}
                     onChange={handleTextareaChange}
-                    disabled={status === 'submitting'}>
+                    disabled={RsvpStatus === 'submitting'}>
                 </textarea>
                 <br />
                 <button
-                    disabled={RSVPAnswer.length === 0 ||
-                        rsvpStatus === 'submitting'}>
+                    disabled={RsvpAnswer.length === 0 ||
+                        RsvpStatus === 'submitting'
+                    }>
                     Submit
                 </button>
+                {error !== null &&
+                    <p>
+                        {error.message}
+                    </p>
+                }
             </form>
         </>
     );
 }
 
-function searchRSVP(uniqueCode) {
-    //TOOD searches for users first + last name via unique code sent from RSVP
+function submitForm(RsvpAnswer) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let shouldError = RsvpAnswer.toLowerCase() !== '123'
+            if (shouldError) {
+                reject(new Error(`rsvp not found for [${RsvpAnswer}]`))
+            } else {
+                resolve();
+            }
+        }, 1500);
+    });
+}
+
+function searchRsvp(uniqueCode) {
+    //TOOD searches for users first + last name via unique code sent from Rsvp
     return (
         uniqueCode
     );
-    //  check access token - set in browser after initial rsvp search success
+    //  check access token - set in browser after initial Rsvp search success
     //  redirect to access page(s) for guest
 
-    //  no token - show rsvp search?
+    //  no token - show Rsvp search?
     //  search via api / db
     //  found - success
     //  create access token
     //  not found - failure
-    //  redirect to rsvp home url
+    //  redirect to Rsvp home url
 
 }
 
-function foundRSVP() {
+function foundRsvp() {
     return (
         <>
             code [{uniqueCode}] was found!
@@ -71,7 +101,7 @@ function foundRSVP() {
     );
 }
 
-function notFoundRSVP() {
+function notFoundRsvp() {
     return (
         <>
             code [{uniqueCode}] invalid =/
@@ -79,18 +109,19 @@ function notFoundRSVP() {
     );
 }
 
-function checkRSVP(uniqueCode) {
+function checkRsvp(uniqueCode) {
     if (temp_codes.includes(uniqueCode)) {
-        foundRSVP();
+        foundRsvp();
     } else
-        notFoundRSVP();
+        notFoundRsvp();
 }
 
 export default function RsvpPage() {
     return (
         <Layout>
-            <p>rsvp page here!</p>
             <NavigatePage pageName="home"></NavigatePage>
+            <p>Rsvp page here!</p>
+            {RsvpForm()}
         </Layout>
     );
 }
