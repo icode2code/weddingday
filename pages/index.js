@@ -4,7 +4,7 @@ import ImageBig from '../src/components/images';
 import Layout from '../components/layout';
 import NavigatePage from '@/components/navigation';
 
-const testPages = ["FAQs", "rsvp", "schedule", "guestList", "travel", "account", "admin", "home"];
+const testPages = ["home", "FAQs", "rsvp", "schedule", "guestList", "travel", "account", "admin", "home"];
 
 export function NavigationTabs(tabsArray) {
     const navigationArray = testPages.map((item) => {
