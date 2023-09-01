@@ -21,6 +21,7 @@ export default function HomePage() {
                     <NavigatePage pageName="FAQs"></NavigatePage>
                     <NavigatePage pageName="guestList"></NavigatePage>
                     <NavigatePage pageName="schedule"></NavigatePage>
+                    <NavigatePage pageName="travel"></NavigatePage>
                     <NavigatePage pageName="manage"></NavigatePage>
                     <NavigatePage pageName="account"></NavigatePage>
                 </div>
