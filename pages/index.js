@@ -4,9 +4,9 @@ import ImageBig from '../src/components/images';
 import Layout from '../components/layout';
 import NavigatePage from '@/components/navigation';
 
-const testPages = ["FAQs", "rsvp", "schedule","guestList", "travel", "account", "admin", "home"];
+const testPages = ["FAQs", "rsvp", "schedule", "guestList", "travel", "account", "admin", "home"];
 
-export function NavigationTabs(tabsObject) {
+export function NavigationTabs(tabsArray) {
     const navigationArray = testPages.map((item) => {
         return <NavigatePage pageName={item}></NavigatePage>
     })
@@ -22,18 +22,8 @@ export default function HomePage() {
                 <Head>
                     <title>title here</title>
                 </Head>
-                {/* <div>
-                    <NavigatePage pageName="rsvp"></NavigatePage>
-                    <NavigatePage pageName="schedule"></NavigatePage>
-                    <NavigatePage pageName="FAQs"></NavigatePage>
-                    <NavigatePage pageName="guestList"></NavigatePage>
-                    <NavigatePage pageName="schedule"></NavigatePage>
-                    <NavigatePage pageName="travel"></NavigatePage>
-                    <NavigatePage pageName="manage"></NavigatePage>
-                    <NavigatePage pageName="account"></NavigatePage>
-                </div> */}
                 <NavigationTabs tabsArray={testPages}></NavigationTabs>
-                <br/>
+                <br />
                 <ImageBig></ImageBig>
             </Layout>
         </div>
